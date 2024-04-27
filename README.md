@@ -1,3 +1,71 @@
+<div class=WordSection1>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Times New Roman","serif"'>Тестовое задание: Разработка простого
+веб-приложения на Yii2<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Цель</span></b><span
+style='font-family:"Times New Roman","serif"'>: Создать веб-приложение, <span
+class=GramE>которое</span> позволит пользователям зарегистрироваться, войти в
+систему и просматривать список задач. Пользователи должны иметь возможность
+добавлять, редактировать и удалять свои задачи.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Times New Roman","serif"'>Требования</span></b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Times New Roman","serif"'>:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Times New Roman","serif"'>Регистрация
+и аутентификация пользователей: Пользователи должны иметь возможность
+зарегистрироваться, указав свое имя, адрес электронной почты и пароль.
+Зарегистрированные пользователи должны иметь возможность войти в систему,
+используя свой адрес электронной почты и пароль.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>CRUD
+для задач</span></b><span style='font-family:"Times New Roman","serif"'>:
+Зарегистрированные пользователи должны иметь возможность создавать новые
+задачи, просматривать список своих задач, редактировать и удалять свои задачи.
+Каждая задача должна иметь заголовок и описание.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Безопасность</span></b><span
+style='font-family:"Times New Roman","serif"'>: Приложение должно предотвращать
+любые попытки SQL-инъекции и XSS-атак. Пароли пользователей должны храниться в
+хешированном виде.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Валидация</span></b><span
+style='font-family:"Times New Roman","serif"'>: Все входные данные должны быть
+должным образом проверены и <span class=SpellE>валидированы</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Times New Roman","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Times New Roman","serif"'>Дополнительные задачи (не обязательны,
+но будут плюсом):<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Пагинация</span></b><span
+style='font-family:"Times New Roman","serif"'>: Добавьте пагинацию для списка
+задач.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Фильтрация</span></b><span
+style='font-family:"Times New Roman","serif"'>: Добавьте возможность фильтрации
+задач по заголовку.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Times New Roman","serif"'>Тестирование</span></b><span
+style='font-family:"Times New Roman","serif"'>: Напишите <span class=SpellE>unit</span>-тесты
+для основных компонентов вашего приложения.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Times New Roman","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Times New Roman","serif"'>Сдача задания:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Times New Roman","serif"'>Вы
+можете использовать любой удобный для вас способ предоставления вашего кода для
+проверки (<span class=SpellE>GitHub</span>, <span class=SpellE>Bitbucket</span>,
+архив и т.д.). Пожалуйста, включите инструкции по установке и запуску вашего
+приложения.<o:p></o:p></span></p>
+
+</div>
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
