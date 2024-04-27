@@ -1,3 +1,10 @@
+<h4 align="center">Демо версия</h4>
+<a href="http://eazyway.kadastrcard.ru/admin" target="_blank">http://eazyway.kadastrcard.ru/admin</a>
+
+```
+login:admin
+password:123456
+```
 <div class=WordSection1>
 
 <p class=MsoNormal><b><span style='font-size:12.0pt;line-height:107%;
