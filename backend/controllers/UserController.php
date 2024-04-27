@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\User;
 use common\models\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,7 +65,6 @@ class UserController extends Controller
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
-     */
     public function actionCreate()
     {
         $model = new User();
@@ -81,6 +81,7 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
+     */
 
     /**
      * Updates an existing User model.
@@ -111,7 +112,9 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->status = User::STATUS_DELETED;
+        $model->save();
 
         return $this->redirect(['index']);
     }
@@ -126,7 +129,9 @@ class UserController extends Controller
     protected function findModel($id)
     {
         if (($model = User::findOne(['id' => $id])) !== null) {
-            return $model;
+            if (User::isAdmin() or $model->id == Yii::$app->user->id){
+                return $model;
+            }
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');

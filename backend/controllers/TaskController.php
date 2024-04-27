@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use common\models\Task;
 use common\models\TaskSearch;
+use common\models\User;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -126,7 +128,9 @@ class TaskController extends Controller
     protected function findModel($id)
     {
         if (($model = Task::findOne(['id' => $id])) !== null) {
-            return $model;
+            if (User::isAdmin() or $model->user_id == Yii::$app->user->id){
+                return $model;
+            }
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');

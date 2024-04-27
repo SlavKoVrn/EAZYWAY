@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Task;
+use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -30,18 +31,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'id',
             'title',
-            //'description:ntext',
             [
                 'attribute' => 'created_at',
+                'filterType' => GridView::FILTER_DATE_RANGE,
+                'filterWidgetOptions' => [
+                    'convertFormat'  => false,
+                    'presetDropdown' => true,
+                    'pluginOptions'  => [
+                        'format'    => 'd.m.Y',
+                        'autoclose' => true,
+                    ]
+                ],
                 'value' => function($model){
                     return date('d.m.Y',strtotime($model->created_at));
                 }
             ],
             [
                 'attribute' => 'updated_at',
+                'filterType' => GridView::FILTER_DATE_RANGE,
+                'filterWidgetOptions' => [
+                    'convertFormat'  => false,
+                    'presetDropdown' => true,
+                    'pluginOptions'  => [
+                        'format'    => 'd.m.Y',
+                        'autoclose' => true,
+                    ]
+                ],
                 'value' => function($model){
                     return date('d.m.Y',strtotime($model->updated_at));
                 }
+            ],
+            [
+                'label' => 'Владелец',
+                'attribute' => 'user.username',
             ],
             [
                 'class' => ActionColumn::className(),

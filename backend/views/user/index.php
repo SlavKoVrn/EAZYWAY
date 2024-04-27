@@ -31,17 +31,43 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             'email:email',
-            //'status',
+            [
+                'attribute' => 'status',
+                'filter' => User::STATUSES,
+                'value' => function($model){
+                    return User::STATUSES[$model->status];
+                }
+            ],
             [
                 'attribute' => 'created_at',
+                'filterType' => GridView::FILTER_DATE_RANGE,
+                'filterWidgetOptions' => [
+                    'convertFormat'  => false,
+                    'presetDropdown' => true,
+                    'pluginOptions'  => [
+                        'id' => 'created_at',
+                        'format'    => 'Y-m-d',
+                        'autoclose' => true,
+                    ]
+                ],
                 'value' => function($model){
-                    return date('d.m.Y',strtotime($model->created_at));
+                    return date('d.m.Y',$model->created_at);
                 }
             ],
             [
                 'attribute' => 'updated_at',
+                'filterType' => GridView::FILTER_DATE_RANGE,
+                'filterWidgetOptions' => [
+                    'convertFormat'  => false,
+                    'presetDropdown' => true,
+                    'pluginOptions'  => [
+                        'id' => 'updated_at',
+                        'format'    => 'Y-m-d',
+                        'autoclose' => true,
+                    ]
+                ],
                 'value' => function($model){
-                    return date('d.m.Y',strtotime($model->updated_at));
+                    return date('d.m.Y',$model->updated_at);
                 }
             ],
             [

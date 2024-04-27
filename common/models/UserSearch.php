@@ -6,12 +6,34 @@ use common\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use kartik\daterange\DateRangeBehavior;
 
 /**
  * UserSearch represents the model behind the search form of `common\models\User`.
  */
 class UserSearch extends User
 {
+    public $dateCreatedStart,$dateCreatedEnd;
+    public $dateUpdatedStart,$dateUpdatedEnd;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => DateRangeBehavior::class,
+                'attribute' => 'created_at',
+                'dateStartAttribute' => 'dateCreatedStart',
+                'dateEndAttribute' => 'dateCreatedEnd',
+            ],
+            [
+                'class' => DateRangeBehavior::class,
+                'attribute' => 'updated_at',
+                'dateStartAttribute' => 'dateUpdatedStart',
+                'dateEndAttribute' => 'dateUpdatedEnd',
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -61,12 +83,18 @@ class UserSearch extends User
             return $dataProvider;
         }
 
+        if ($this->created_at){
+            $query->andFilterWhere(['between','created_at',$this->dateCreatedStart,$this->dateCreatedEnd]);
+        }
+
+        if ($this->updated_at){
+            $query->andFilterWhere(['between','updated_at',$this->dateUpdatedStart,$this->dateUpdatedEnd]);
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
