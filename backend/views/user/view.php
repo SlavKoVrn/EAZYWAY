@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -32,6 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             'email:email',
+            [
+                'attribute' => 'status',
+                'value' => function($model){
+                    return User::STATUSES[$model->status];
+                }
+            ],
             [
                 'attribute' => 'created_at',
                 'value' => function($model){

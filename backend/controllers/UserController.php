@@ -94,8 +94,17 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost and $model->load($this->request->post())) {
+            if ($model->save()){
+                Yii::$app->session->addFlash('success', 'Данные успешно изменены');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                $errors = $model->getErrors();
+                foreach ($errors as $attribute => $errorMessages) {
+                    foreach ($errorMessages as $errorMessage) {
+                        Yii::$app->session->addFlash('danger', $errorMessage);
+                    }
+                }            }
         }
 
         return $this->render('update', [

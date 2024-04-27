@@ -39,6 +39,8 @@ class User extends ActiveRecord implements IdentityInterface
         self::STATUS_DELETED => 'удален',
     ];
 
+    public $password,$repeatPassword;
+
     public static function isAdmin(): bool
     {
         return Yii::$app->user->id === self::USER_ADMIN_ID;
@@ -68,9 +70,30 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['password', 'repeatPassword'], 'string'],
+            [['password', 'repeatPassword'], 'validateNewPassword'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['username', 'email',  'password', 'repeatPassword'],'safe'],
+            [['username', 'email'],'unique'],
         ];
+    }
+
+    public function validateNewPassword($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if (!empty($this->password) and $this->password !== $this->repeatPassword) {
+                $this->addError($attribute, 'пароли не равны');
+            }
+        }
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!empty($this->password)) {
+            $this->setPassword($this->password);
+        }
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -85,6 +108,8 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => 'Создан',
             'updated_at' => 'Изменен',
             'status' => 'Статус',
+            'password' => 'Пароль',
+            'repeatPassword' => 'Повторить пароль',
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 /* @var $content string */
-
+use Yii;
 use yii\bootstrap4\Breadcrumbs;
 ?>
 <div class="content-wrapper">
@@ -33,6 +33,20 @@ use yii\bootstrap4\Breadcrumbs;
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+
+    <div class="row">
+        <div class="col col-sm-12 pl-3 pr-2">
+            <?php
+            foreach (Yii::$app->session->getAllFlashes() as $key => $messages) {
+                foreach ($messages as $message){
+                    echo \hail812\adminlte\widgets\Alert::widget([
+                        'type' => $key,
+                        'title' => $message,
+                    ]);
+                }
+            } ?>
+        </div>
+    </div>
 
     <!-- Main content -->
     <div class="content">

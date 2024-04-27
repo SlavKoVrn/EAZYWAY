@@ -76,16 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Url::toRoute([$action, 'id' => $model->id]);
                  },
                 'visibleButtons' => [
-                    'view' => function ($model, $key, $index) {
-                        // Return false to hide the view button
-                        return true;
-                    },
-                    'update' => function ($model, $key, $index) {
-                        // Return false to hide the view button
-                        return User::isAdmin();
-                    },
                     'delete' => function ($model, $key, $index) {
-                        // Return false to hide the view button
                         return User::isAdmin();
                     },
                 ],
