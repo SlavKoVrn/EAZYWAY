@@ -35,6 +35,7 @@ class Task extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'integer'],
             [['created_at', 'updated_at'], 'date', 'format' => 'php:Y-m-d'],
+            [['title'], 'required'],
             [['title'], 'string', 'max' => 255],
             [['description'], 'string'],
         ];
@@ -78,4 +79,13 @@ class Task extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
+    public function beforeSave($insert)
+    {
+        if ($insert){
+            $this->user_id = Yii::$app->user->id;
+        }
+        return parent::beforeSave($insert);
+    }
+
 }

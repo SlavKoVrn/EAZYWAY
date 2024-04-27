@@ -33,6 +33,16 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    const STATUSES = [
+        self::STATUS_ACTIVE => 'работает',
+        self::STATUS_INACTIVE => 'не работает',
+        self::STATUS_DELETED => 'удален',
+    ];
+
+    public static function isAdmin(): bool
+    {
+        return Yii::$app->user->id === self::USER_ADMIN_ID;
+    }
 
     /**
      * {@inheritdoc}
@@ -60,6 +70,21 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'Ид',
+            'username' => 'Имя',
+            'email' => 'Почта',
+            'created_at' => 'Создан',
+            'updated_at' => 'Изменен',
+            'status' => 'Статус',
         ];
     }
 

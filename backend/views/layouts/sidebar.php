@@ -34,7 +34,8 @@
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    ['label' => 'Пользователи', 'url' => ['/users'], 'icon' => 'th'],
+                    ['label' => 'Пользователи', 'url' => ['/user'], 'icon' => 'th'],
+                    ['label' => 'Задачи', 'url' => ['/task'], 'icon' => 'th'],
                     /*
                     [
                         'label' => 'Starter Pages',
