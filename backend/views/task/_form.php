@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="task-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'create-task']); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

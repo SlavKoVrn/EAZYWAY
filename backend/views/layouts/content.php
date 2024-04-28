@@ -1,6 +1,5 @@
 <?php
 /* @var $content string */
-use Yii;
 use yii\bootstrap4\Breadcrumbs;
 ?>
 <div class="content-wrapper">
