@@ -19,7 +19,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
         </p>
 
         <p>
-            <?= Html::a('Обратно', Yii::$app->homeUrl); ?>
+            <?= Html::a('Обратно', Yii::$app->homeUrl, ['id' => 'goBack']); ?>
         </p>
 
     </div>

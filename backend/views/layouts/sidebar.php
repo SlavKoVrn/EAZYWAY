@@ -36,6 +36,12 @@
                 'items' => [
                     ['label' => 'Пользователи', 'url' => ['/user'], 'icon' => 'th'],
                     ['label' => 'Задачи', 'url' => ['/task'], 'icon' => 'th'],
+                    [
+                        'label' => 'Выход',
+                        'url' => ['/site/logout'],
+                        'linkTemplate' => '<a id="Logout" class="nav-link {active}" data-method="post" href="{url}" {target}>{icon} {label}</a>',
+                        'icon' => 'th'
+                    ],
                     /*
                     [
                         'label' => 'Starter Pages',
