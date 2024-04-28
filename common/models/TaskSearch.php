@@ -83,11 +83,17 @@ class TaskSearch extends Task
         }
 
         if ($this->created_at){
-            $query->andFilterWhere(['between',"UNIX_TIMESTAMP(STR_TO_DATE(created_at, '%Y-%m-%d'))",$this->dateCreatedStart,$this->dateCreatedEnd]);
+            $query->andFilterWhere(['between','created_at',
+                date('Y-m-d 00:00:00',$this->dateCreatedStart),
+                date('Y-m-d 23:59:59',$this->dateCreatedEnd)
+            ]);
         }
 
         if ($this->updated_at){
-            $query->andFilterWhere(['between',"UNIX_TIMESTAMP(STR_TO_DATE(updated_at, '%Y-%m-%d'))",$this->dateUpdatedStart,$this->dateUpdatedEnd]);
+            $query->andFilterWhere(['between','updated_at',
+                date('Y-m-d 00:00:00',$this->dateUpdatedStart),
+                date('Y-m-d 23:59:59',$this->dateUpdatedEnd)
+            ]);
         }
 
         // grid filtering conditions

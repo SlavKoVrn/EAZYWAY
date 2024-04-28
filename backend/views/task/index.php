@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'convertFormat'  => false,
                     'presetDropdown' => true,
                     'pluginOptions'  => [
-                        'format'    => 'd.m.Y',
+                        'format'    => 'Y-m-d',
                         'autoclose' => true,
                     ]
                 ],
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'convertFormat'  => false,
                     'presetDropdown' => true,
                     'pluginOptions'  => [
-                        'format'    => 'd.m.Y',
+                        'format'    => 'Y-m-d',
                         'autoclose' => true,
                     ]
                 ],

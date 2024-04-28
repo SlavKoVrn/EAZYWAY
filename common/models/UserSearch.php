@@ -40,7 +40,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'safe'],
         ];
     }
@@ -77,6 +78,7 @@ class UserSearch extends User
 
         $this->load($params);
 
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -84,11 +86,17 @@ class UserSearch extends User
         }
 
         if ($this->created_at){
-            $query->andFilterWhere(['between','created_at',$this->dateCreatedStart,$this->dateCreatedEnd]);
+            $query->andFilterWhere(['between','created_at',
+                strtotime(date('Y-m-d 00:00:00',$this->dateCreatedStart)),
+                strtotime(date('Y-m-d 23:59:59',$this->dateCreatedEnd))
+            ]);
         }
 
         if ($this->updated_at){
-            $query->andFilterWhere(['between','updated_at',$this->dateUpdatedStart,$this->dateUpdatedEnd]);
+            $query->andFilterWhere(['between','updated_at',
+                strtotime(date('Y-m-d 00:00:00',$this->dateUpdatedStart)),
+                strtotime(date('Y-m-d 23:59:59',$this->dateUpdatedEnd))
+            ]);
         }
 
         // grid filtering conditions
@@ -98,11 +106,7 @@ class UserSearch extends User
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }
