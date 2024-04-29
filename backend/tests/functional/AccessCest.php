@@ -10,8 +10,6 @@ use Faker\Factory;
 
 class AccessCest
 {
-    const PASSWORD = 'password_0';
-
     private $record;
 
     /**
