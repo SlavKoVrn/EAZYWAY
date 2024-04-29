@@ -19,9 +19,10 @@ class SignupCest
         $I->see('Signup', 'h1');
         $I->see('Please fill out the following fields to signup:');
         $I->submitForm($this->formId, []);
-        $I->seeValidationError('Username cannot be blank.');
-        $I->seeValidationError('Email cannot be blank.');
-        $I->seeValidationError('Password cannot be blank.');
+
+        $I->seeValidationError('Необходимо заполнить «Username».');
+        $I->seeValidationError('Необходимо заполнить «Email».');
+        $I->seeValidationError('Необходимо заполнить «Password».');
 
     }
 
@@ -34,9 +35,10 @@ class SignupCest
             'SignupForm[password]'  => 'tester_password',
         ]
         );
-        $I->dontSee('Username cannot be blank.', '.invalid-feedback');
-        $I->dontSee('Password cannot be blank.', '.invalid-feedback');
-        $I->see('Email is not a valid email address.', '.invalid-feedback');
+
+        $I->dontSee('Необходимо заполнить «Username».', '.invalid-feedback');
+        $I->dontSee('Необходимо заполнить «Password».', '.invalid-feedback');
+        $I->see('Значение «Email» не является правильным email адресом.', '.invalid-feedback');
     }
 
     public function signupSuccessfully(FunctionalTester $I)
